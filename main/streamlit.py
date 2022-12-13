@@ -3,8 +3,14 @@ import pandas as pd
 import time 
 from streamlit_extras.switch_page_button import switch_page
 
+
 st.write('# SB-TRAVEL')
 data = pd.read_excel('../final.xlsx')
+
+
+
+
+
 ciudad = st.multiselect(
     '¿Hay alguna ciudad a la que NO quieras viajar?',
     data)
@@ -17,7 +23,65 @@ data.to_excel('paso1.xlsx', index = False)
 data1 = pd.read_excel('paso1.xlsx')
 
 
-dinero = st.radio('¿Qué presupuesto tienes por persona? Vuelos y dietas incluídas, alojamiento no incluído.',
+
+
+
+epoca = st.selectbox('¿En qué mes del año quieres viajar?',
+('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto',
+'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'))
+
+
+dias = st.selectbox('¿Cuántos días quieres que dure el viaje?',
+'1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15')
+
+if dias == '1':
+    data1['presupuesto']= data1['coste'] * 1
+
+elif dias == '2':
+    data1['presupuesto']= data1['coste'] * 2
+
+elif dias == '3':
+    data1['presupuesto']= data1['coste'] * 3
+
+elif dias == '4':
+    data1['presupuesto']= data1['coste'] * 4
+
+elif dias == '5':
+    data1['presupuesto']= data1['coste'] * 5
+
+elif dias == '6':
+    data1['presupuesto']= data1['coste'] * 6
+
+elif dias == '7':
+    data1['presupuesto']= data1['coste'] * 7
+
+elif dias == '8':
+    data1['presupuesto']= data1['coste'] * 8
+
+elif dias == '9':
+    data1['presupuesto']= data1['coste'] * 9
+
+elif dias == '10':
+    data1['presupuesto']= data1['coste'] * 10
+
+elif dias == '11':
+    data1['presupuesto']= data1['coste'] * 11
+
+elif dias == '12':
+    data1['presupuesto']= data1['coste'] * 12
+
+elif dias == '13':
+    data1['presupuesto']= data1['coste'] * 13
+
+elif dias == '14':
+    data1['presupuesto']= data1['coste'] * 14
+
+elif dias == '15':
+    data1['presupuesto']= data1['coste'] * 15
+
+
+
+dinero = st.radio('¿Qué presupuesto en cuanto a dietas tienes por persona? Vuelos y alojamiento no incluído.',
 ('indiferente', 'Menos de 600€', 'Menos de 800€'))
 
 if dinero == 'Menos de 600€':

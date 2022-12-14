@@ -1,16 +1,17 @@
 import streamlit as st
 import pandas as pd
 import time 
-from streamlit_extras.switch_page_button import switch_page
+
 import datetime
 
+st.set_page_config(page_title='SB-TRAVEL', page_icon="✈️", layout="wide", initial_sidebar_state="auto", menu_items=None)
 
 def add_bg_from_url():    
     st.markdown(         
         f"""         
         <style>         
         .stApp {{             
-            background-image: url("https://github.com/Barge7/PROYECTO-FINAL/blob/main/imagenes/fondosivia.png?raw=true");             
+            background-image: url("https://github.com/Barge7/PROYECTO-FINAL/blob/main/imagenes/fondosivia70.png?raw=true");             
             background-attachment: fixed;             
             background-size: cover         
             }}         
@@ -28,8 +29,16 @@ st.markdown(no_sidebar_style, unsafe_allow_html=True)
 st.sidebar.image("https://github.com/Barge7/PROYECTO-FINAL/blob/main/imagenes/POSITIVO_SINFONDO.png?raw=true", use_column_width=True)
 
 
-st.write('# SB-TRAVEL')
+
+st.markdown("<h1 style='text-align: center; color: black;'>SB-TRAVEL", unsafe_allow_html=True)
 data = pd.read_excel('../final.xlsx')
+
+
+# st.header()
+
+
+st.map(data)
+
 
 
 
@@ -76,10 +85,11 @@ else:
 
 data2 = data1.copy()
 
-dinero = ''
-temp = ''
-activ = ''
-tama = ''
+
+dinero= ''
+temp= ''
+
+
 if dias >= 1 and dias <= 18:
 
     if dias == 1:
@@ -344,32 +354,286 @@ data3 = data2.copy()
 
 
 if dinero != '':
+    if mes == 1:
+        temp = st.radio('Elige una de estas opciones',
+        ('Indiferente', 'Temperatura < 2ºC', 'Temperatura > 2ºC'))
+        if temp == 'Temperatura < 2ºC':
+            indice = []
+            for i,e in enumerate(data3.ene):
+                if e > 2:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+            
 
-    temp = st.radio('Elige una de estas opciones',
-    ('Indiferente', 'Temperatura < 0ºC', 'Temperatura > 0ºC'))
-    if temp == 'Temperatura < 0ºC':
-        indice = []
-        for i,e in enumerate(data2.Temp):
-            if e > 0:
-                indice.append(i)
-        data2.drop(indice, axis= 0, inplace = True)
-        
+        elif temp == 'Temperatura > 2ºC':
+            indice = []
+            for i,e in enumerate(data3.ene):
+                if e < 2:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
 
-    if temp == 'Temperatura > 0ºC':
-        indice = []
-        for i,e in enumerate(data2.Temp):
-            if e < 0:
-                indice.append(i)
-        data2.drop(indice, axis= 0, inplace = True)
+        else:
+            pass
+
+    if mes == 2:
+        temp = st.radio('Elige una de estas opciones',
+        ('Indiferente', 'Temperatura < 5ºC', 'Temperatura > 5ºC'))
+        if temp == 'Temperatura < 5ºC':
+            indice = []
+            for i,e in enumerate(data3.feb):
+                if e > 5:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+            
+
+        elif temp == 'Temperatura > 5ºC':
+            indice = []
+            for i,e in enumerate(data3.feb):
+                if e < 5:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+
+        else:
+            pass
+
+
+    if mes == 3:
+        temp = st.radio('Elige una de estas opciones',
+        ('Indiferente', 'Temperatura < 5ºC', 'Temperatura > 5ºC'))
+        if temp == 'Temperatura < 5ºC':
+            indice = []
+            for i,e in enumerate(data3.mar):
+                if e > 5:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+            
+
+        elif temp == 'Temperatura > 5ºC':
+            indice = []
+            for i,e in enumerate(data3.mar):
+                if e < 5:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+
+        else:
+            pass
+
+
+
+    if mes == 4:
+        temp = st.radio('Elige una de estas opciones',
+        ('Indiferente', 'Temperatura < 9ºC', 'Temperatura > 9ºC'))
+        if temp == 'Temperatura < 9ºC':
+            indice = []
+            for i,e in enumerate(data3.abr):
+                if e > 9:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+            
+
+        elif temp == 'Temperatura > 9ºC':
+            indice = []
+            for i,e in enumerate(data3.abr):
+                if e < 9:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+
+        else:
+            pass
+
+
+    if mes == 5:
+        temp = st.radio('Elige una de estas opciones',
+        ('Indiferente', 'Temperatura < 15ºC', 'Temperatura > 15ºC'))
+        if temp == 'Temperatura < 15ºC':
+            indice = []
+            for i,e in enumerate(data3.may):
+                if e > 15:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+            
+
+        elif temp == 'Temperatura > 15ºC':
+            indice = []
+            for i,e in enumerate(data3.may):
+                if e < 15:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+
+        else:
+            pass
+
+
+    if mes == 6:
+        temp = st.radio('Elige una de estas opciones',
+        ('Indiferente', 'Temperatura < 20ºC', 'Temperatura > 20ºC'))
+        if temp == 'Temperatura < 20ºC':
+            indice = []
+            for i,e in enumerate(data3.jun):
+                if e > 20:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+            
+
+        elif temp == 'Temperatura > 20ºC':
+            indice = []
+            for i,e in enumerate(data3.Tjun):
+                if e < 20:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+
+        else:
+            pass
+
+
+    if mes == 7:
+        temp = st.radio('Elige una de estas opciones',
+        ('Indiferente', 'Temperatura < 22ºC', 'Temperatura > 22ºC'))
+        if temp == 'Temperatura < 22ºC':
+            indice = []
+            for i,e in enumerate(data3.jul):
+                if e > 22:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+            
+
+        elif temp == 'Temperatura > 22ºC':
+            indice = []
+            for i,e in enumerate(data3.jul):
+                if e < 22:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+
+        else:
+            pass
+
+
+
+    if mes == 8:
+        temp = st.radio('Elige una de estas opciones',
+        ('Indiferente', 'Temperatura < 22ºC', 'Temperatura > 22ºC'))
+        if temp == 'Temperatura < 22ºC':
+            indice = []
+            for i,e in enumerate(data3.ago):
+                if e > 22:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+            
+
+        elif temp == 'Temperatura > 22ºC':
+            indice = []
+            for i,e in enumerate(data3.ago):
+                if e < 22:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+
+        else:
+            pass
+
+
+
+    if mes == 9:
+        temp = st.radio('Elige una de estas opciones',
+        ('Indiferente', 'Temperatura < 15ºC', 'Temperatura > 15ºC'))
+        if temp == 'Temperatura < 15ºC':
+            indice = []
+            for i,e in enumerate(data3.sep):
+                if e > 15:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+            
+
+        elif temp == 'Temperatura > 15ºC':
+            indice = []
+            for i,e in enumerate(data3.sep):
+                if e < 15:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+
+        else:
+            pass
+
+
+
+    if mes == 10:
+        temp = st.radio('Elige una de estas opciones',
+        ('Indiferente', 'Temperatura < 13ºC', 'Temperatura > 13ºC'))
+        if temp == 'Temperatura < 13ºC':
+            indice = []
+            for i,e in enumerate(data3.oct):
+                if e > 13:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+            
+
+        elif temp == 'Temperatura > 13ºC':
+            indice = []
+            for i,e in enumerate(data3.oct):
+                if e < 13:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+
+        else:
+            pass
+
+
+    if mes == 11:
+        temp = st.radio('Elige una de estas opciones',
+        ('Indiferente', 'Temperatura < 7ºC', 'Temperatura > 7ºC'))
+        if temp == 'Temperatura <7ºC':
+            indice = []
+            for i,e in enumerate(data3.nov):
+                if e > 7:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+            
+
+        elif temp == 'Temperatura > 7ºC':
+            indice = []
+            for i,e in enumerate(data3.nov):
+                if e < 7:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+
+        else:
+            pass
+
+
+    if mes == 12:
+        temp = st.radio('Elige una de estas opciones',
+        ('Indiferente', 'Temperatura < 2ºC', 'Temperatura > 2ºC'))
+        if temp == 'Temperatura <2ºC':
+            indice = []
+            for i,e in enumerate(data3.dic):
+                if e > 2:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+            
+
+        elif temp == 'Temperatura > 2ºC':
+            indice = []
+            for i,e in enumerate(data3.dic):
+                if e < 2:
+                    indice.append(i)
+            data3.drop(indice, axis= 0, inplace = True)
+
+        else:
+            pass
+
+
 
     else:
         pass
+
+
+
 
 data4 = data3.copy()
 
 # data2.to_excel('paso3.xlsx', index = False)
 # data3 = pd.read_excel('paso3.xlsx')
 
+activ= ''
 
 if temp != '':
 
@@ -380,32 +644,33 @@ if temp != '':
     'Monumentos históricos', 'Relajación/Spas', 'diversión', 'naturaleza'))
 
     if activ == 'Museos':
-        data3 = data3.sort_values(by= 'museos', ascending = False)
+        data4 = data4.sort_values(by= 'museos', ascending = False)
 
     if activ == 'Salir de fiesta':
-        data3 = data3.sort_values(by= 'vida_nocturna', ascending = False)
+        data4 = data4.sort_values(by= 'vida_nocturna', ascending = False)
 
     if activ == 'Paseos en barco / deportes acuáticos':
-        data3 = data3.sort_values(by= 'deportes_agua', ascending = False)
+        data4 = data4.sort_values(by= 'deportes_agua', ascending = False)
 
     if activ == 'Monumentos históricos':
-        data3 = data3.sort_values(by= 'monumentos', ascending = False)
+        data4 = data4.sort_values(by= 'monumentos', ascending = False)
 
     if activ == 'Relajación/Spas':
-        data3 = data3.sort_values(by= 'spas', ascending = False)
+        data4 = data4.sort_values(by= 'spas', ascending = False)
 
     if activ == 'Diversión':
-        data3 = data3.sort_values(by= 'diversion', ascending = False)
+        data4 = data4.sort_values(by= 'diversion', ascending = False)
 
     if activ == 'Naturaleza':
-        data3 = data3.sort_values(by= 'naturaleza', ascending = False)
+        data4 = data4.sort_values(by= 'naturaleza', ascending = False)
 
-data4 = data3.head(7)
+    data5 = data4.head()
 # data3.to_excel('paso4.xlsx', index= False)
 
 # data4 = pd.read_excel('paso4.xlsx')
 
 
+tama = ''
 if activ != '':
 
     tama = st.radio('¿Prefieres un tamaño de ciudad?',
@@ -413,48 +678,52 @@ if activ != '':
 
     if tama == 'Ciudad pequeña':
         indice = []
-        for i,e in enumerate(data4.tamaño):
+        for i,e in enumerate(data5.tamaño):
             if e == 'grande':
                 indice.append(i)
-        data4.drop(indice, axis= 0, inplace = True)
+        data5.drop(indice, axis= 0, inplace = True)
 
     if tama == 'Ciudad grande':
         indice = []
-        for i,e in enumerate(data4.tamaño):
+        for i,e in enumerate(data5.tamaño):
             if e == 'pequeña':
                 indice.append(i)
-        data4.drop(indice, axis= 0, inplace = True)
+        data5.drop(indice, axis= 0, inplace = True)
 
     else:
         pass
 
-data5 = data4.copy()
+    data6 = data5.copy()
 
 # data4.to_excel('paso5.xlsx', index = False)
 
 # data5= pd.read_excel('paso5.xlsx')
 
+
+comida= ''
 if tama != '':
     comida = st.radio('¿Qué tipo de comida te gusta más?',
     ('Tipo buffet', 'Americana', 'Asiatica', 'Italiana'))
 
     if comida == 'Tipo buffet':
-        data5 = data5.sort_values(by= 'buffet', ascending = False)
+        data6 = data6.sort_values(by= 'buffet', ascending = False)
 
     if comida == 'Americana':
-        data5 = data5.sort_values(by= 'americana', ascending = False)
+        data6 = data6.sort_values(by= 'americana', ascending = False)
 
     if comida == 'Asiatica':
-        data5 = data5.sort_values(by= 'asiatica', ascending = False)
+        data6 = data6.sort_values(by= 'asiatica', ascending = False)
 
     if comida == 'Italiana':
-        data5 = data5.sort_values(by= 'italiana', ascending = False)
+        data6 = data6.sort_values(by= 'italiana', ascending = False)
 
 
-data5 = data5.head(1)
+    data7 = data6.head(1)
 # data5.to_excel('paso5.xlsx')
-ciudad = data5.ciudades.unique()
 
-boton = st.button('Descubre tu destino')
-if boton:
-    switch_page('page')
+if comida != '':
+    ciudad = data7.ciudades.unique()
+
+    boton = st.button('Descubre tu destino')
+    if boton:
+        st.info(ciudad[0])

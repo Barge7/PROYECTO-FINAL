@@ -22,73 +22,73 @@ def add_bg_from_url():
 add_bg_from_url()
 
 
-
 #Sidebar: Ocultar nombres sidebar
 no_sidebar_style = """    <style>        div[data-testid="stSidebarNav"] {display: none;}    </style>"""
 st.markdown(no_sidebar_style, unsafe_allow_html=True)
 st.sidebar.image("https://github.com/Barge7/PROYECTO-FINAL/blob/main/imagenes/POSITIVO_SINFONDO.png?raw=true", use_column_width=True)
 
+st.sidebar.write("How would you like to be contacted?")
 
 
 st.markdown("<h1 style='text-align: center; color: black;'>SB-TRAVEL", unsafe_allow_html=True)
 data = pd.read_excel('../final.xlsx')
 
+st.markdown("<h4 style='text-align: center; color: black;'>Te ayudamos a encontrar tu mejor destino... ¿Cuál será el próximo viaje?", unsafe_allow_html=True)
 
-# st.header()
+col1, col2 = st.columns(2)
 
-
-st.map(data)
-
-
-
-
-
-
-ciudad = st.multiselect('¿Hay alguna ciudad a la que NO quieras viajar? Pudes dejarlo en blanco',
+with col1:
+    
+    ciudad = st.multiselect('¿Hay alguna ciudad a la que NO quieras viajar? Pudes dejarlo en blanco',
     data)
-indice = []
-for i,e in enumerate(data.ciudades):
-    if e in ciudad:
-        indice.append(i)
-data.drop(indice, axis= 0, inplace = True)
-# data.to_excel('paso1.xlsx', index = False)
-# data1 = pd.read_excel('paso1.xlsx')
-data1 = data.copy()
+    indice = []
+    for i,e in enumerate(data.ciudades):
+        if e in ciudad:
+            indice.append(i)
+    data.drop(indice, axis= 0, inplace = True)
+    # data.to_excel('paso1.xlsx', index = False)
+    # data1 = pd.read_excel('paso1.xlsx')
+
+    data.reset_index(drop= True, inplace = True)
+    data1 = data.copy()
 
 
+    st.markdown('¿Entre qué fechas quieres viajar?')
+
+    # ida = datetime.date(2022, 12, 16)
+    ida = st.date_input("Ida")
+
+    # vuelta= datetime.date(2022, 12, 17)
+    vuelta = st.date_input("Vuelta")
+
+    dias = (vuelta - ida).days
+    mes = ida.month
 
 
+    if dias < 0:
+        st.markdown("<h7 style='text-align: left; color: red;'>La fecha de vuelta debe ser posterior a la de ida", unsafe_allow_html=True)
 
-st.markdown('¿Entre qué fechas quieres viajar?')
+    if dias == 0:
+        st.markdown("<h7 style='text-align: left; color: red;'>El viaje debe de tener una duración mínima de 1 día", unsafe_allow_html=True)
 
-# ida = datetime.date(2022, 12, 16)
-ida = st.date_input("Ida")
+    if dias > 18:
+        st.markdown("<h7 style='text-align: left; color: red;'>El viaje debe de tener una duración máxima de 18 días", unsafe_allow_html=True)
 
-# vuelta= datetime.date(2022, 12, 17)
-vuelta = st.date_input("Vuelta")
-
-dias = (vuelta - ida).days
-mes = ida.month
+    else:
+        data1['presupuesto']= data1['coste'] * dias
 
 
-if dias < 0:
-    st.markdown("<h7 style='text-align: left; color: red;'>La fecha de vuelta debe ser posterior a la de ida", unsafe_allow_html=True)
+    data1.reset_index(drop= True, inplace = True)
+    data2 = data1.copy()
 
-if dias == 0:
-    st.markdown("<h7 style='text-align: left; color: red;'>El viaje debe de tener una duración mínima de 1 día", unsafe_allow_html=True)
 
-if dias > 18:
-    st.markdown("<h7 style='text-align: left; color: red;'>El viaje debe de tener una duración máxima de 18 días", unsafe_allow_html=True)
+with col2:
+    st.map(data)
 
-else:
-    data1['presupuesto']= data1['coste'] * dias
-
-data2 = data1.copy()
 
 
 dinero= ''
 temp= ''
-
 
 if dias >= 1 and dias <= 18:
 
@@ -346,6 +346,8 @@ if dias >= 1 and dias <= 18:
             pass
 
 
+
+data2.reset_index(drop= True, inplace = True)
 data3 = data2.copy()
 
 # data1.to_excel('paso2.xlsx', index= False)
@@ -627,7 +629,7 @@ if dinero != '':
 
 
 
-
+data3.reset_index(drop= True, inplace = True)
 data4 = data3.copy()
 
 # data2.to_excel('paso3.xlsx', index = False)
@@ -664,7 +666,9 @@ if temp != '':
     if activ == 'Naturaleza':
         data4 = data4.sort_values(by= 'naturaleza', ascending = False)
 
-    data5 = data4.head()
+
+data4.reset_index(drop= True, inplace = True)
+data5 = data4.head()
 # data3.to_excel('paso4.xlsx', index= False)
 
 # data4 = pd.read_excel('paso4.xlsx')
@@ -693,7 +697,9 @@ if activ != '':
     else:
         pass
 
-    data6 = data5.copy()
+
+data5.reset_index(drop= True, inplace = True)
+data6 = data5.copy()
 
 # data4.to_excel('paso5.xlsx', index = False)
 
@@ -717,8 +723,8 @@ if tama != '':
     if comida == 'Italiana':
         data6 = data6.sort_values(by= 'italiana', ascending = False)
 
-
-    data7 = data6.head(1)
+data6.reset_index(drop= True, inplace = True)
+data7 = data6.head(1)
 # data5.to_excel('paso5.xlsx')
 
 if comida != '':
@@ -727,3 +733,4 @@ if comida != '':
     boton = st.button('Descubre tu destino')
     if boton:
         st.info(ciudad[0])
+        st.balloons()

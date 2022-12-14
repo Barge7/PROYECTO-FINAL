@@ -4,6 +4,11 @@ import time
 from streamlit_extras.switch_page_button import switch_page
 import datetime
 
+#Sidebar: Ocultar nombres sidebar
+no_sidebar_style = """    <style>        div[data-testid="stSidebarNav"] {display: none;}    </style>"""
+st.markdown(no_sidebar_style, unsafe_allow_html=True)
+st.sidebar.image("https://github.com/Barge7/PROYECTO-FINAL/blob/main/imagenes/POSITIVO_SINFONDO.png?raw=true", use_column_width=True)
+
 
 st.write('# SB-TRAVEL')
 data = pd.read_excel('../final.xlsx')

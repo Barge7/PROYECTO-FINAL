@@ -4,6 +4,24 @@ import time
 from streamlit_extras.switch_page_button import switch_page
 import datetime
 
+
+def add_bg_from_url():    
+    st.markdown(         
+        f"""         
+        <style>         
+        .stApp {{             
+            background-image: url("https://github.com/Barge7/PROYECTO-FINAL/blob/main/imagenes/fondosivia.png?raw=true");             
+            background-attachment: fixed;             
+            background-size: cover         
+            }}         
+            </style>         
+            """,         
+            unsafe_allow_html=True     
+            )
+add_bg_from_url()
+
+
+
 #Sidebar: Ocultar nombres sidebar
 no_sidebar_style = """    <style>        div[data-testid="stSidebarNav"] {display: none;}    </style>"""
 st.markdown(no_sidebar_style, unsafe_allow_html=True)
@@ -34,24 +52,24 @@ data1 = data.copy()
 
 st.markdown('¿Entre qué fechas quieres viajar?')
 
-ida = datetime.date(2022, 12, 16)
-st.date_input("Ida",
-    ida)
+# ida = datetime.date(2022, 12, 16)
+ida = st.date_input("Ida")
 
-vuelta= datetime.date(2022, 12, 17)
-st.date_input("Vuelta",
-    vuelta)
+# vuelta= datetime.date(2022, 12, 17)
+vuelta = st.date_input("Vuelta")
 
 dias = (vuelta - ida).days
+mes = ida.month
+
 
 if dias < 0:
-    st.error('La fecha de vuelta debe ser posterior a la de ida')
+    st.markdown("<h7 style='text-align: left; color: red;'>La fecha de vuelta debe ser posterior a la de ida", unsafe_allow_html=True)
 
 if dias == 0:
-    st.error('El viaje debe de tener una duración mínima de 1 día')
+    st.markdown("<h7 style='text-align: left; color: red;'>El viaje debe de tener una duración mínima de 1 día", unsafe_allow_html=True)
 
 if dias > 18:
-    st.error('El viaje debe de tener una duración máxima de 18 días')
+    st.markdown("<h7 style='text-align: left; color: red;'>El viaje debe de tener una duración máxima de 18 días", unsafe_allow_html=True)
 
 else:
     data1['presupuesto']= data1['coste'] * dias
@@ -62,7 +80,7 @@ dinero = ''
 temp = ''
 activ = ''
 tama = ''
-if ida != datetime.date(2022, 12, 16):
+if dias >= 1 and dias <= 18:
 
     if dias == 1:
         dinero = st.radio('¿Qué presupuesto en cuanto a dietas tienes por persona? Vuelos y alojamiento no incluídos.',

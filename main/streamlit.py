@@ -6,20 +6,20 @@ import datetime
 
 st.set_page_config(page_title='SB-TRAVEL', page_icon="✈️", layout="wide", initial_sidebar_state="auto", menu_items=None)
 
-def add_bg_from_url():    
-    st.markdown(         
-        f"""         
-        <style>         
-        .stApp {{             
-            background-image: url("https://github.com/Barge7/PROYECTO-FINAL/blob/main/imagenes/fondosivia70.png?raw=true");             
-            background-attachment: fixed;             
-            background-size: cover         
-            }}         
-            </style>         
-            """,         
-            unsafe_allow_html=True     
-            )
-add_bg_from_url()
+# def add_bg_from_url():    
+#     st.markdown(         
+#         f"""         
+#         <style>         
+#         .stApp {{             
+#             background-image: url("");             
+#             background-attachment: fixed;             
+#             background-size: cover         
+#             }}         
+#             </style>         
+#             """,         
+#             unsafe_allow_html=True     
+#             )
+# add_bg_from_url()
 
 
 #Sidebar: Ocultar nombres sidebar
@@ -32,14 +32,16 @@ st.sidebar.write("How would you like to be contacted?")
 
 st.markdown("<h1 style='text-align: center; color: black;'>SB-TRAVEL", unsafe_allow_html=True)
 
-data = pd.read_excel('/app/PROYECTO-FINAL/main/final.xlsx')
+data = pd.read_excel('../final.xlsx')
 
-st.markdown("<h4 style='text-align: center; color: black;'>Te ayudamos a encontrar tu mejor destino... ¿Cuál será el próximo viaje?", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center; color: black;'>Te ayudamos a encontrar tu mejor destino... ¿Cuál será el próximo viaje?", unsafe_allow_html=True)
+
 
 col1, col2 = st.columns(2)
 
 with col1:
-    
+    st.markdown("<h6 style='text-align: center; color: black;'>En SB-TRAVEL nos preocupamos por ofrecer a nuestros clientes el viaje de su vida basándonos en sus gustos", unsafe_allow_html=True)
+
     ciudad = st.multiselect('¿Hay alguna ciudad a la que NO quieras viajar? Pudes dejarlo en blanco',
     data)
     indice = []

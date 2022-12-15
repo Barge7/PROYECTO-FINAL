@@ -31,7 +31,7 @@ st.sidebar.write("How would you like to be contacted?")
 
 
 st.markdown("<h1 style='text-align: center; color: black;'>SB-TRAVEL", unsafe_allow_html=True)
-data = pd.read_excel('../final.xlsx')
+data = pd.read_excel('PROYECTO-FINAL/blob/main/final.xlsx')
 
 st.markdown("<h4 style='text-align: center; color: black;'>Te ayudamos a encontrar tu mejor destino... ¿Cuál será el próximo viaje?", unsafe_allow_html=True)
 
@@ -732,5 +732,5 @@ if comida != '':
 
     boton = st.button('Descubre tu destino')
     if boton:
-        st.info(ciudad[0])
+        st.write(ciudad[0])
         st.balloons()

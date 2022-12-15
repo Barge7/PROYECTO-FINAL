@@ -32,7 +32,7 @@ st.sidebar.write("How would you like to be contacted?")
 
 st.markdown("<h1 style='text-align: center; color: black;'>SB-TRAVEL", unsafe_allow_html=True)
 
-data = pd.read_excel('/app/PROYECTO-FINAL/final.xlsx')
+data = pd.read_excel('/app/PROYECTO-FINAL/main/final.xlsx')
 
 st.markdown("<h4 style='text-align: center; color: black;'>Te ayudamos a encontrar tu mejor destino... ¿Cuál será el próximo viaje?", unsafe_allow_html=True)
 
